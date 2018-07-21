@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+project.ext {
+    supportLibraryVersion = "27.1.1"
+    daggerVersion = "2.13"
+    butterKnifeVersion = "8.8.1"
+    timberVersion = "4.6.0"
+    lombokVersion = '1.16.20'
+    retrofitVersion = '2.3.0'
+    gsonVersion = '2.8.0'
+    loggingInterceptorVersion = '3.9.1'
+    locationVersion = '15.0.1'
+}
+
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.ppodgorski.verificationtask"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests.all {
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen {false}
+                showStandardStreams = true
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$project.supportLibraryVersion"
+    implementation "com.android.support:support-v4:$project.supportLibraryVersion"
+
+    // Network
+    implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$project.loggingInterceptorVersion"
+    implementation "com.google.code.gson:gson:$project.gsonVersion"
+
+    // Lombok
+    compileOnly "org.projectlombok:lombok:$project.lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$project.lombokVersion"
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$project.timberVersion"
+
+    // Butterknife
+    implementation "com.jakewharton:butterknife:$project.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
+
+    // Dagger 2
+    annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    implementation "com.google.dagger:dagger:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$project.daggerVersion"
+    implementation "com.google.dagger:dagger-android:$project.daggerVersion"
+
+    // Location
+    implementation "com.google.android.gms:play-services-location:$project.locationVersion"
+
+}

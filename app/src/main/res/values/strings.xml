@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">VerificationTask</string>
+
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="task_started">Task started</string>
+    <string name="task_stopped">Task stopped</string>
+
+</resources>
