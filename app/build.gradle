@@ -10,6 +10,9 @@ project.ext {
     gsonVersion = '2.8.0'
     loggingInterceptorVersion = '3.9.1'
     locationVersion = '15.0.1'
+    junitVersion = '4.12'
+    mockitoVersion = '2.7.6'
+    hamcrestVersion = '1.3'
 }
 
 
@@ -78,4 +81,8 @@ dependencies {
     // Location
     implementation "com.google.android.gms:play-services-location:$project.locationVersion"
 
+    // Unit testing
+    testImplementation "junit:junit:$project.junitVersion"
+    testImplementation "org.mockito:mockito-core:$project.mockitoVersion"
+    testImplementation "org.hamcrest:hamcrest-core:$project.hamcrestVersion"
 }
